@@ -49,7 +49,7 @@ def encode(number, base):
             nume = chr(55 + nume)
         digits.append(str(nume))
         number //= base
-    return digits[::-1]
+    return "".join(digits[::-1])
 
 
 def convert(digits, base1, base2):
@@ -59,6 +59,7 @@ def convert(digits, base1, base2):
     base2: int -- base to convert to
     return: str -- string representation of number (in base2)"""
     # Handle up to base 36 [0-9a-z]
+
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
     # TODO: Convert digits from base 2 to base 16 (and vice versa)
@@ -72,7 +73,7 @@ def convert(digits, base1, base2):
     digits = decode(digits, base1)
     digits = encode(digits, base2)
 
-    return "".join(digits)
+    return digits
 
 
 def main():
