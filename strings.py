@@ -1,10 +1,26 @@
 #!python
 
+
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
+
+    tsize = len(text)
+    end = len(pattern) - 1
+    y = 0
+    i = 0
+    while i != tsize:
+        if text[i] == pattern[y]:
+            if y == end:
+                return True
+            y += 1
+        else:
+            if y != 0:
+                i -= 1
+            y = 0
+        i += 1
+    return False
 
 
 def find_index(text, pattern):
@@ -13,6 +29,25 @@ def find_index(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
+    tsize = len(text)
+    end = len(pattern) - 1
+    y = 0
+    i = 0
+    start = None
+    while i != tsize:
+        if text[i] == pattern[y]:
+            if y == 0:
+                start = i
+
+            if y == end:
+                return start
+            y += 1
+        else:
+            if y != 0:
+                i -= 1
+            y = 0
+        i += 1
+    return None
 
 
 def find_all_indexes(text, pattern):
@@ -21,6 +56,26 @@ def find_all_indexes(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+    tsize = len(text)
+    end = len(pattern) - 1
+    y = 0
+    i = 0
+    start = None
+    startlist = []
+    while i != tsize:
+        if text[i] == pattern[y]:
+            if y == 0:
+                start = i
+
+            if y == end:
+                startlist.append(start)
+            y += 1
+        else:
+            if y != 0:
+                i -= 1
+            y = 0
+        i += 1
+    return startlist
 
 
 def test_string_algorithms(text, pattern):
